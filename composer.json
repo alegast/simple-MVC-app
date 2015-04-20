@@ -1,0 +1,12 @@
+{
+    "name": "MVC application",
+    "description": "another one bicycle (small MVC application)",
+    "keywords": ["mvc", "mini framework"],
+    
+    "autoload": {
+        "psr-4": {
+            "System\\": "system/",
+            "App\\": "src/"
+        }
+    }
+}
