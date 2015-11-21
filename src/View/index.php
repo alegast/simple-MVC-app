@@ -10,7 +10,7 @@
             <a href="/hello/user-name">Hello</a>
             <a href="/">Home</a>
         </div>
-        <div>Hello <? echo $name; ?>. Welcome to simple MVC index page</div>
+        <div>Hello <? echo !empty($name) ? $name : ''; ?>. Welcome to simple MVC index page</div>
     </body>
 
 </html>

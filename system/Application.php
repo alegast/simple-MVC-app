@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace System;
 
@@ -6,7 +7,7 @@ class Application
 {
     protected static $_instance;
     private $route;
-    private $db;
+    private $diContainer;
 
     /**
      *  create App object and init necessary methods
@@ -15,15 +16,13 @@ class Application
     {
         $this->route = new \System\Route();
         $this->route->matchRoute();
-        $this->initDb();
-    }
-
-    private function __clone()
-    {
         
+        $this->diContainer = new \System\DependencyInjection();
     }
 
-    public static function getInstance()
+    private function __clone() {}
+
+    public static function getInstance() :Application
     {       
         if (null === self::$_instance) {
             self::$_instance = new self();
@@ -62,20 +61,11 @@ class Application
     
 
     /**
-     *  init Db connetion
+     *  return dependecy Ingection Container 
      */
-    private function initDb()
+    public function getContainer() :DependencyInjection
     {
-        // db connection code
-    }
-    
-    /** get Db connection
-     * 
-     * @return Object
-     */
-    public function getDb()
-    {
-        return $this->db;
+        return $this->diContainer;
     }
     
     

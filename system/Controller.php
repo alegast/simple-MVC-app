@@ -1,12 +1,17 @@
 <?php
 namespace System;
 
-class Controller {
+class Controller 
+{
     protected $app;
-    
+    protected $view;
+
+
     public function __construct(Application $app)
     {
-        $this->app = $app;
+        $this->app = $app;        
+        
+        $this->view = $this->app->getContainer()->get('view');
     }
 
     /** common method, allow request params from GET / POST / PUT request methods 
@@ -42,7 +47,7 @@ class Controller {
     
     public function pageNotFound404()
     {
-        return \System\Response::render404Page();
+        return $this->view->render404Page();
     }    
     
     
@@ -54,7 +59,7 @@ class Controller {
      */
     protected function renderView($viewPath, $params = array())
     {
-        return \System\Response::renderView($viewPath, $params, false);
+        return $this->view->renderView($viewPath, $params, false);
     }
 
 
@@ -66,7 +71,7 @@ class Controller {
      */
     public function renderJsonResponse($data, $statusCode)
     {
-        return \System\Response::renderJsonResponce($data, $statusCode);
+        return $this->view->renderJsonResponce($data, $statusCode);
     }
     
     

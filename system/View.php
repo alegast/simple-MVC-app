@@ -1,10 +1,10 @@
 <?php
 namespace System;
 
-class Response 
+class View
 {
     
-    public static function renderJsonResponce($data, $statusCode = 200)
+    public function renderJsonResponce($data, $statusCode = 200)
     {
         if (function_exists('http_response_code')){
             http_response_code($statusCode);
@@ -21,7 +21,7 @@ class Response
     }
     
     
-    public static function render404Page()
+    public function render404Page()
     {
         if (function_exists('http_response_code')){
             http_response_code(404);
@@ -36,7 +36,7 @@ class Response
      * @param bool $toVariable
      * @return string or response to browser
      */
-    public static function renderView($viewPath, $params = array(), $toVariable = false)
+    public function renderView($viewPath, $params = array(), $toVariable = false)
     {
         ob_start();
         extract($params);
